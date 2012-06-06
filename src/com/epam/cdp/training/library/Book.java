@@ -3,10 +3,10 @@ package com.epam.cdp.training.library;
 import java.util.*;
 
 public class Book {
-	
-	/* Book class.
-	 * Helps you to store all the books,
-	 * Create new books, find existing books
+
+	/*
+	 * Book class. Helps you to store all the books, Create new books, find
+	 * existing books
 	 */
 
 	private static ArrayList<Book> bookArray = new ArrayList<Book>();
@@ -16,7 +16,6 @@ public class Book {
 	private String date;
 	private Double price;
 	private Author author;
-	
 
 	public Book(Author pAuthor, String pName, String pDescription,
 			String pDate, Double pPrice) {
@@ -28,7 +27,7 @@ public class Book {
 		this.setPrice(pPrice);
 		bookArray.add(this);
 	}
-	
+
 	public void setName(String pName) {
 		this.name = pName;
 	}
@@ -65,17 +64,16 @@ public class Book {
 		return author;
 	}
 
-
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
-	
+
 	/**
 	 * This method is used to get a name of the book author.
 	 * 
-	 * @param	book
-	 * 				- Book object
-	 *
+	 * @param book
+	 *            - Book object
+	 * 
 	 * @return - Author name as a String
 	 */
 	public static String getAuthorName(Book book) {
@@ -87,23 +85,17 @@ public class Book {
 	/**
 	 * This method is used to add a new book.
 	 * 
-	 * @param	pAuthor 
-	 * 				- author object
-	 * 			pName 
-	 * 				- book name
-	 * 			pDescription 
-	 * 				- book description
-	 * 			pDate 
-	 * 				- book date
-	 * 			pPrice 
-	 * 				- book price
-	 *
+	 * @param pAuthor
+	 *            - author object pName - book name pDescription - book
+	 *            description pDate - book date pPrice - book price
+	 * 
 	 * @return - Book object
 	 */
 	public static Book addBook(Author pAuthor, String pName,
 			String pDescription, String pDate, Double pPrice) {
 		Book newBook = new Book(pAuthor, pName, pDescription, pDate, pPrice);
-		System.out.println("Book with name " + newBook.getName() + " of " + Book.getAuthorName(newBook) + " author was added");
+		System.out.println("Book with name " + newBook.getName() + " of "
+				+ Book.getAuthorName(newBook) + " author was added");
 		return newBook;
 	}
 
@@ -118,7 +110,7 @@ public class Book {
 	public static Book findBookbyName(String pName) {
 		Book foundBook = null;
 		ListIterator<Book> it = bookArray.listIterator();
-		while(it.hasNext()){
+		while (it.hasNext()) {
 			Book bookI = it.next();
 			if (bookI.getName().equals(pName)) {
 				foundBook = bookI;
@@ -127,28 +119,29 @@ public class Book {
 		}
 		return foundBook;
 	}
-	
+
 	/**
-	 * This method is used to find books by its Author.
+	 * This method is used to find books by its Author name.
 	 * 
-	 * @param author
-	 *            - Author object
+	 * @param pName
+	 *            - Author name
 	 * 
 	 * @return - ArrayList of Book objects
 	 */
 	public static ArrayList<Book> findBooksbyAuthor(String pName) {
 		List<Book> foundBooks = new ArrayList<Book>();
 		ListIterator<Book> it = bookArray.listIterator();
-		while(it.hasNext()){
+		while (it.hasNext()) {
 			Book bookI = it.next();
 			if (Book.getAuthorName(bookI).equals(pName)) {
 				foundBooks.add(bookI);
 			}
 		}
-		System.out.println("Author " + pName + " has " + foundBooks.size() + " books");
+		System.out.println("Author " + pName + " has " + foundBooks.size()
+				+ " books");
 		return (ArrayList<Book>) foundBooks;
 	}
-	
+
 	/**
 	 * This method is used to find cheapest book in bookArray.
 	 * 
@@ -160,7 +153,7 @@ public class Book {
 	public static Book findCheapestBook(Author author) {
 		ListIterator<Book> it = bookArray.listIterator();
 		Book cheapestBook = bookArray.get(0);
-		while(it.hasNext()){
+		while (it.hasNext()) {
 			Book bookI = it.next();
 			if (bookI.author.equals(author)) {
 				if (bookI.getPrice() < cheapestBook.getPrice()) {
@@ -168,7 +161,9 @@ public class Book {
 				}
 			}
 		}
-		System.out.println("The cheapest book of " + author.getName() + " author is " + cheapestBook.getName() + " which prise is " + cheapestBook.getPrice());
+		System.out.println("The cheapest book of " + author.getName()
+				+ " author is " + cheapestBook.getName() + " which prise is "
+				+ cheapestBook.getPrice());
 		return cheapestBook;
 	}
 
@@ -183,7 +178,7 @@ public class Book {
 	public static Book deleteAuthorCheapestBook(Author author) {
 		return Book.deleteBook(Book.findCheapestBook(author));
 	}
-	
+
 	/**
 	 * This method is used to delete book from bookArray.
 	 * 
@@ -194,9 +189,9 @@ public class Book {
 	 */
 	public static Book deleteBook(Book objBook) {
 		int index = bookArray.indexOf(objBook);
-		System.out.println("Book which name is " +objBook.getName() + " was deleted from the Books Array");
+		System.out.println("Book which name is " + objBook.getName()
+				+ " was deleted from the Books Array");
 		return bookArray.remove(index);
 	}
-
 
 }
