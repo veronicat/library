@@ -35,7 +35,7 @@ public class Author {
 	 */
 	public Book editBookDescription(String pName, String pDescription) {
 		Book editedBook = Book.findBookbyName(pName);
-		if (!editedBook.equals(null)) {
+		if (editedBook != null) {
 			editedBook.setDescription(pDescription);
 			return editedBook;
 		} else {

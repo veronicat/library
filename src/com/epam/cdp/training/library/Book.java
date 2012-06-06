@@ -152,6 +152,10 @@ public class Book {
 	 */
 	public static Book findCheapestBook(Author author) {
 		ListIterator<Book> it = bookArray.listIterator();
+		if (bookArray.size() == 0) {
+			return null;
+		}
+
 		Book cheapestBook = bookArray.get(0);
 		while (it.hasNext()) {
 			Book bookI = it.next();
