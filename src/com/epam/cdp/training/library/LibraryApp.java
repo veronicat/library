@@ -24,7 +24,7 @@ public class LibraryApp {
 		Book.addBook(authorArray[4], "Wonderful Stories for Children",
 				"Wonderful Stories for Children", "5.08.1998", 30.00);
 		Book.addBook(authorArray[4], "New Year", "New Year book", "26.11.2000",
-				35.95);
+				0.05);
 		// adding Kolya author and his books
 
 		Author authorKolya = null;
@@ -51,8 +51,11 @@ public class LibraryApp {
 		Book.findBooksbyAuthor(authorKolya.getName());
 		// Find books of the Kolya author
 
-		Book.deleteAuthorCheapestBook(authorKolya);
-		// Delete Kolya's cheapest book
+		try {
+			Book.deleteAuthorCheapestBook(authorKolya);
+		} catch (CustomException e) {
+			e.printStackTrace();
+		}
 
 	}
 }

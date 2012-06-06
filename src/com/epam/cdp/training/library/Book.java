@@ -150,20 +150,28 @@ public class Book {
 	 * 
 	 * @return - Book object
 	 */
-	public static Book findCheapestBook(Author author) {
+	public static Book findCheapestBook(Author author) throws CustomException {
 		ListIterator<Book> it = bookArray.listIterator();
 		if (bookArray.size() == 0) {
 			return null;
 		}
 
 		Book cheapestBook = bookArray.get(0);
+		Boolean hasDuplicatePrices = false;
 		while (it.hasNext()) {
 			Book bookI = it.next();
 			if (bookI.author.equals(author)) {
 				if (bookI.getPrice() < cheapestBook.getPrice()) {
 					cheapestBook = bookI;
+					hasDuplicatePrices = false;
+				} else if (bookI.getPrice().equals(cheapestBook.getPrice())) {
+					hasDuplicatePrices = true;
 				}
 			}
+		}
+		if (hasDuplicatePrices) {
+			throw new CustomException(
+					"THERE ARE MORE THAN ONE BOOK WITH CHEAPEST PRICE!!!");
 		}
 		System.out.println("The cheapest book of " + author.getName()
 				+ " author is " + cheapestBook.getName() + " which prise is "
@@ -179,7 +187,8 @@ public class Book {
 	 * 
 	 * @return - Book object
 	 */
-	public static Book deleteAuthorCheapestBook(Author author) {
+	public static Book deleteAuthorCheapestBook(Author author)
+			throws CustomException {
 		return Book.deleteBook(Book.findCheapestBook(author));
 	}
 
